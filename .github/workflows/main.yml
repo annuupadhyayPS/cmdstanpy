@@ -136,8 +136,6 @@ jobs:
            python -m pip install -r requirements-test.txt && \
            python -m pip install codecov && \
            python -m pip freeze && \
-           install_cmdstan -h && \
-           install_cxx_toolchain -h && \
            mkdir run_tests && \
            cd run_tests && \
            python -m cmdstanpy.install_cmdstan --version 2.29.2 && \
