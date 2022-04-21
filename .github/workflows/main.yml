@@ -138,5 +138,5 @@ jobs:
            python -m pip freeze && \
            mkdir run_tests && \
            cd run_tests && \
-           python -m cmdstanpy.install_cmdstan --version 2.29.2 && \
+           #python -m cmdstanpy.install_cmdstan --version 2.29.2 && \
            pytest -v ../test --cov=../cmdstanpy'           
