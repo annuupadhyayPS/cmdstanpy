@@ -38,8 +38,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
-        python-version: [3.7, 3.8, 3.9, "3.10"]
+        os: [ubuntu-latest]
+        python-version: [3.8, 3.9]
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
@@ -58,12 +58,7 @@ jobs:
           pip install -r requirements-test.txt
           pip install codecov
 
-      - name: Run flake8, pylint, mypy
-        if: matrix.python-version == '3.10'
-        run: |
-          flake8 cmdstanpy test
-          pylint -v cmdstanpy test
-          mypy cmdstanpy
+     
 
       - name: Build wheel
         run: python setup.py bdist_wheel
@@ -72,11 +67,7 @@ jobs:
         if: matrix.os != 'windows-latest'
         run: pip install dist/*.whl
 
-      - name: Install wheel (Windows)
-        if: matrix.os == 'windows-latest'
-        run: |
-          $whl = Get-ChildItem -Path dist -Filter *.whl | Select-Object -First 1
-          pip install "$whl"
+     
 
       - name: Show libraries
         run: python -m pip freeze
@@ -98,12 +89,7 @@ jobs:
           install_cxx_toolchain -h
           python -m cmdstanpy.install_cmdstan --version ${{ needs.get-cmdstan-version.outputs.version }}
 
-      - name: Install CmdStan (Windows)
-        if: matrix.os == 'windows-latest'
-        run: |
-          install_cmdstan -h
-          install_cxx_toolchain -h
-          python -m cmdstanpy.install_cmdstan --compiler --version ${{ needs.get-cmdstan-version.outputs.version }}
+      
 
       - name: Run tests
         run: |
