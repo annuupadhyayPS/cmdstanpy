@@ -39,7 +39,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        python-version: [3.8, 3.9]
+        python-version: [3.8]
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
@@ -135,8 +135,10 @@ jobs:
            python -m pip install -r requirements.txt && \
            python -m pip install -r requirements-test.txt && \
            python -m pip install codecov && \
+           python setup.py bdist_wheel && \
+           pip install dist/*.whl && \
            python -m pip freeze && \
+           python setup.py install && \
            mkdir run_tests && \
            cd run_tests && \
-           #python -m cmdstanpy.install_cmdstan --version 2.29.2 && \
            pytest -v ../test --cov=../cmdstanpy'           
