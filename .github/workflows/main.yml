@@ -138,6 +138,9 @@ jobs:
            python setup.py bdist_wheel && \
            pip install dist/*.whl && \
            python -m pip freeze && \
+           git clone https://github.com/stan-dev/cmdstan.git --recursive && \
+           cd cmdstan && \
+           make build && \
            python setup.py install && \
            mkdir run_tests && \
            cd run_tests && \
