@@ -141,6 +141,8 @@ jobs:
            git clone https://github.com/stan-dev/cmdstan.git --recursive && \
            cd cmdstan && \
            apt-get install -y make && \
+           apt install -y g++ && \
+           apt install -y curl && \
            make build && \
            python setup.py install && \
            mkdir run_tests && \
