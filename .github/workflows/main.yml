@@ -144,6 +144,7 @@ jobs:
            apt install -y g++ && \
            apt install -y curl && \
            make build && \
+           cd .. && \
            python setup.py install && \
            mkdir run_tests && \
            cd run_tests && \
