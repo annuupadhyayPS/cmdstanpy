@@ -143,6 +143,7 @@ jobs:
            apt-get install -y make && \
            apt install -y g++ && \
            apt install -y curl && \
+           make clean-all && \
            make build && \
            cd .. && \
            python setup.py install && \
