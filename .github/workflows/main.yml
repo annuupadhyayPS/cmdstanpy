@@ -140,6 +140,7 @@ jobs:
            python -m pip freeze && \
            git clone https://github.com/stan-dev/cmdstan.git --recursive && \
            cd cmdstan && \
+           apt-get install -y make && \
            make build && \
            python setup.py install && \
            mkdir run_tests && \
